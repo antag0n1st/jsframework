@@ -9,8 +9,6 @@ LoadingScreen.prototype.screen_initialize = LoadingScreen.prototype.initialize;
 LoadingScreen.prototype.initialize = function () {
     this.screen_initialize();
     
-    
-    
 
     this.logo = new Sprite('logo');    
     this.logo.set_anchor(0.5, 0.5);
@@ -50,9 +48,7 @@ LoadingScreen.prototype.initialize = function () {
 LoadingScreen.prototype.set_positions = function () {
     
     var mid_x = Config.screen_width / 2;
-    var mid_y = Config.screen_height / 2;
     var height = Config.screen_height;
-    var width = Config.screen_width;
     
     this.logo.set_position(mid_x, height * 0.4);
     this.light1.set_position(mid_x, height * 0.4);
@@ -64,20 +60,19 @@ LoadingScreen.prototype.set_positions = function () {
 
 LoadingScreen.prototype.show = function () {
     HScreen.prototype.show.call(this);
-
 };
 
 LoadingScreen.prototype.hide = function () {
     HScreen.prototype.hide.call(this);
-    this.rotate_light1.stop()
+    this.rotate_light1.stop();
     this.rotate_light2.stop();
 };
 
 LoadingScreen.prototype.update = function () {
     HScreen.prototype.update.call(this);
 
-    var to_load = ContentManager.count_resources;
-    var loaded = ContentManager.loaded_resources;
+    var to_load = ContentManager.count_to_load;
+    var loaded = ContentManager.count_loaded;
 
     var loading = loaded / to_load;
 
@@ -87,7 +82,6 @@ LoadingScreen.prototype.update = function () {
     loading = (to_load === 0) ? 1 : loading;
 
     this.loading_fr.width = loading * this.loading_width;
-
 
 };
 
@@ -101,24 +95,10 @@ LoadingScreen.prototype.on_remove_from_parent = function (parent) {
 
 };
 
-LoadingScreen.prototype.draw = function (context) {
-
-//    HScreen.prototype.draw.call(this, context);
-//
-//    context.fillStyle = "#FFFFFF";
-//    context.fillRect(this.bounds.pos.x, this.bounds.pos.y, this.width, this.height);
-//
-
-
-};
-
 LoadingScreen.prototype.on_resize = function () {
-   // this.set_positions();
+    this.set_positions();
 };
 
-LoadingScreen.prototype.clear = function (context) {
-
-};
 
 //    window.LoadingScreen = LoadingScreen;
 

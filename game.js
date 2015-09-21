@@ -21,32 +21,34 @@
         ////////////////////  LOADING SCREEN ASSETS ////////////////////////////////
 
         // ContentManager.add_atlas('initial_atlas');
-        ContentManager.add_image('logo', 'assets/images/initial/logo.png');
-        ContentManager.add_image('loading_fr', 'assets/images/initial/loading_fr.png');
-        ContentManager.add_image('loading_bg', 'assets/images/initial/loading_bg.png');
-        ContentManager.add_image('lights2', 'assets/images/initial/lights2.png');
-        ContentManager.add_image('lights1', 'assets/images/initial/lights1.png');
-        ContentManager.add_image('rotate_device', 'assets/images/initial/rotate_device.png');
+        ContentManager.add_image('logo', 'initial/logo.png');
+        ContentManager.add_image('loading_fr', 'initial/loading_fr.png');
+        ContentManager.add_image('loading_bg', 'initial/loading_bg.png');
+        ContentManager.add_image('lights2', 'initial/lights2.png');
+        ContentManager.add_image('lights1', 'initial/lights1.png');
+        ContentManager.add_image('rotate_device', 'initial/rotate_device.png');
 
         // DON'T ADD ASSETS HERE !!!
 
         ////////////////////////////////////////////////////////////////////////////
-
+      
         window.game = this;
 
-        ContentManager.download_resources(this.stage, function () {
-
+        ContentManager.download_resources(this, function () {
+            
             game.load_assets();
 
             game.navigator.add(new LoadingScreen());
             Ticker.add_listener(game);
             Ticker.set_fps(30); // min fps
             Ticker.start();
-
+            
             ContentManager.download_resources(this.stage, function () {
+               
                 timeout(function () {
 
                     Style.initialize();
+                    
                     
                     if(game.is_rotation_screen_shown){
                        game.navigator.screens.splice(game.navigator.screens.length-1,0,new GameScreen());
@@ -113,25 +115,26 @@
        
  
         if (Config.is_low_resolution) {
-            this.stage.context.canvas.width = Config.screen_width / 2;
-            this.stage.context.canvas.height = Config.screen_height / 2;
+            this.stage.canvas.width = Config.screen_width / 2;
+            this.stage.canvas.height = Config.screen_height / 2;
         } else {
-            this.stage.context.canvas.width = Config.screen_width;
-            this.stage.context.canvas.height = Config.screen_height;
+            this.stage.canvas.width = Config.screen_width;
+            this.stage.canvas.height = Config.screen_height;
         }
 
-        this.stage.context.canvas.style.width = Config.canvas_width + "px";
-        this.stage.context.canvas.style.height = Config.canvas_height + "px";
+        this.stage.canvas.style.width = Config.canvas_width + "px";
+        this.stage.canvas.style.height = Config.canvas_height + "px";
 
         if (Config.window_mode === Config.MODE_FLEXIBLE_HEIGHT_CENTERED) {
             if (Config.window_width > Config.game_width) {
                 // it should be placed in the center       
                 var style = ((Config.window_width / 2) - Config.canvas_width / 2) + "px";
-                this.stage.context.canvas.style.left = style;
+                this.stage.canvas.style.left = style;
             } else {
-                this.stage.context.canvas.style.left = "0px";
+                this.stage.canvas.style.left = "0px";
             }
         }
+
 
         for (var i = 0; i < this.navigator.screens.length; i++) {
             this.navigator.screens[i].on_resize();

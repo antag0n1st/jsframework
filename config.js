@@ -5,7 +5,7 @@ var game;
 var Config = function () {
 };
 
-Config.debug = false;
+Config.debug = true;
 Config.debug_info = true;
 Config.slow_motion_factor = 1;
 Config.should_clear_stage = false;
