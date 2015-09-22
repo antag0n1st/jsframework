@@ -5,13 +5,13 @@
     }
 
     Game.prototype.initialize = function () {
-        
+
 
         this.stage = new Stage();
 
-//        this.input = new Input();
-//
-//        this.input.add_listener('stage');
+        this.input = new Input();
+
+        this.input.add_listener('stage');
 
         this.navigator = new Navigator();
 
@@ -31,35 +31,35 @@
         // DON'T ADD ASSETS HERE !!!
 
         ////////////////////////////////////////////////////////////////////////////
-      
+
         window.game = this;
 
+        Ticker.add_listener(game);
+        Ticker.set_fps(30); // min fps
+        Ticker.start();
+
         ContentManager.download_resources(this, function () {
-            
+
             game.load_assets();
 
             game.navigator.add(new LoadingScreen());
-            Ticker.add_listener(game);
-            Ticker.set_fps(30); // min fps
-            Ticker.start();
-            
+
             ContentManager.download_resources(this.stage, function () {
-               
+
                 timeout(function () {
 
                     Style.initialize();
-                    
-                    
-                    if(game.is_rotation_screen_shown){
-                       game.navigator.screens.splice(game.navigator.screens.length-1,0,new GameScreen());
-                    } else {                        
+
+                    if (game.is_rotation_screen_shown) {
+                        game.navigator.screens.splice(game.navigator.screens.length - 1, 0, new GameScreen());
+                    } else {
                         game.navigator.add(new GameScreen(), HScreen.ANIMATION_TYPE_FADEIN);
                     }
-                    
+
 
                 }, 300);
             });
-            
+
             // Handle visibility
             game.handle_visibility();
 
@@ -69,7 +69,7 @@
 
             if (Config.screen_width < Config.screen_height) {
                 game.show_rotate_device();
-            }            
+            }
 
         });
 
@@ -111,9 +111,9 @@
     };
 
     Game.prototype.resize = function () {
-        
-       
- 
+
+
+
         if (Config.is_low_resolution) {
             this.stage.canvas.width = Config.screen_width / 2;
             this.stage.canvas.height = Config.screen_height / 2;
@@ -141,9 +141,9 @@
         }
 
         if (Config.screen_width < Config.screen_height) {
-            this.show_rotate_device();            
+            this.show_rotate_device();
         } else {
-            this.hide_rotate_device();             
+            this.hide_rotate_device();
         }
 
     };
@@ -162,7 +162,7 @@
     Game.prototype.hide_rotate_device = function () {
         if (this.is_rotation_screen_shown) {
             this.is_rotation_screen_shown = false;
-         
+
             this.navigator.go_back();
             if (Config.is_sound_on) {
                 Howler.mute(false);
@@ -176,6 +176,7 @@
     Game.prototype.tick = function () {
 
         this.navigator.update();
+
         Actions.run();
         this.stage.update();
 

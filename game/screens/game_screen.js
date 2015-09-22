@@ -34,19 +34,35 @@ GameScreen.prototype.initialize = function () {
 //    spider.play('spider_idle');
 //    this.add_child(spider);
 
-    var conf = {
-        texture: Images.flames.texture,
-        frames: {x: 4, y: 5},
-        animations: {
-            burn: {start: 0, end: 19, loop: true, duration: 1800}
-        },
-        reg: {x: 1, y: 0.6, width: 0.7, height: 0.5}
-    };
+//    var conf = {
+//        texture: Images.flames.texture,
+//        frames: {x: 4, y: 5},
+//        animations: {
+//            burn: {start: 0, end: 19, loop: true, duration: 1800}
+//        },
+//        reg: {x: 1, y: 0.6, width: 0.7, height: 0.5}
+//    };
+//    
+//    flames = new SpriteAnimation(conf);
+//    flames.set_position(400,200);
+//    flames.play('burn',true);
+//    this.add_child(flames);
+//    
+//    label = new Label();
+//    label.text = "This is the label text";
+//    label.font_color = "#0f0f0f";
+//    label.set_position(300,300);
+//    this.add_child(label);
+
+    button = new Button();
+    button.text ='New Button Text';
+    button.image_normal = Images.button;
+    button.image_selected = Images.button_selected;
+    button.font_color = "#09af43";
+    button.set_position(300,300);
+    this.add_child(button);
     
-    flames = new SpriteAnimation(conf);
-    flames.set_position(400,200);
-    flames.play('burn',true);
-    this.add_child(flames);
+    game.input.add(button);
 
 };
 
@@ -62,7 +78,7 @@ GameScreen.prototype.hide = function () {
 
 GameScreen.prototype.update = function () {
     HScreen.prototype.update.call(this);
-
+      
 };
 
 GameScreen.prototype.on_added_to_parent = function (parent) {
