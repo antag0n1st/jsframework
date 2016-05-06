@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JS Framework</title>
+        <title>Ori</title>
 
         <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
 
         <!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->
-        <meta id="viewport" name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0, minimum-scale=0.5, user-scalable=no, minimal-ui">
+        <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <link rel="apple-touch-icon" sizes="256x256" href="assets/images/favicon.png" />
         <meta name="HandheldFriendly" content="true" />
+
 
         <!-- Chrome for Android web app tags -->
         <meta name="mobile-web-app-capable" content="yes" />
@@ -18,19 +19,8 @@
 
         <script type="text/javascript">
 
-            // alert(navigator.userAgent);
-
             var isIPhone = false;
             var isAndroid = false;
-
-            function _get_window_size() {
-                var e = window, a = 'inner';
-                if (!('innerWidth' in window)) {
-                    a = 'client';
-                    e = document.documentElement || document.body;
-                }
-                return {width: e[ a + 'Width' ], height: e[ a + 'Height' ]};
-            }
 
             if (/iPhone|iPod/i.test(navigator.userAgent)) {
                 isIPhone = true;
@@ -38,37 +28,23 @@
                 vp.setAttribute("content", "width=device-width, initial-scale=0.5, maximum-scale=1.0, minimum-scale=0.5, user-scalable=no, minimal-ui");
 
             } else if (/Android/i.test(navigator.userAgent)) {
-
                 isAndroid = true;
-                var size = _get_window_size();
-
-                if (size.width < 480 || size.height <= 246) {
-
-                    var vp = window.document.getElementById("viewport");
-                    vp.setAttribute("content", "width=device-width, initial-scale=0.5, maximum-scale=1.0, minimum-scale=0.5, user-scalable=no, minimal-ui");
-
-                }
-
             }
 
         </script>
 
-
-        <!-- CONFIGURATION -->
         <script src="config.js" type="application/javascript" ></script>
 
-        <!-- EXTERNAL -->
         <script src="lib/external/pixi.js" type="text/javascript"></script>
         <script src="lib/external/pixi-spine.js" type="text/javascript"></script>
         <script src="lib/external/sat.js" type="text/javascript"></script>
         <script src="lib/external/visibility.core.js" type="text/javascript"></script>
         <script src="lib/external/howler.js" type="text/javascript"></script>
-        <script src="lib/external/font.js" type="text/javascript"></script>        
-        <script src="lib/external/kibo.js" type="text/javascript"></script>
+        <script src="lib/external/font.js" type="text/javascript"></script>
 
-        <!-- TWEENS -->
         <script src="lib/tweens/actions.js" type="text/javascript"></script>
-        <script src="lib/tweens/bezier.js" type="text/javascript"></script>        
+        <script src="lib/tweens/bezier.js" type="text/javascript"></script>   
+        <script src="lib/tweens/easing.js" type="text/javascript"></script>
         <script src="lib/tweens/tween.js" type="text/javascript"></script>
         <script src="lib/tweens/tween_alpha.js" type="text/javascript"></script>
         <script src="lib/tweens/tween_blink.js" type="text/javascript"></script>
@@ -82,177 +58,147 @@
         <script src="lib/tweens/tween_shake.js" type="text/javascript"></script>
         <script src="lib/tweens/tween_time.js" type="text/javascript"></script>
         <script src="lib/tweens/timer.js" type="text/javascript"></script>
+        <script src="lib/tweens/tween_squash_stretch.js" type="text/javascript"></script>
+        <script src="lib/tweens/tween_squashy.js" type="text/javascript"></script>
 
-        <!-- UTILITY -->
+        <script src="lib/utility/localization.js" type="text/javascript"></script>
         <script src="lib/utility/ticker.js" type="text/javascript"></script>
         <script src="lib/utility/helpers.js" type="text/javascript"></script>
         <script src="lib/utility/uid.js" type="text/javascript"></script>
         <script src="lib/utility/playlist.js" type="text/javascript"></script>
+        <script src="lib/utility/cookies.js" type="text/javascript"></script>        
 
-        <!-- RESOURCES -->
         <script src="lib/resources/images.js" type="text/javascript"></script>
         <script src="lib/resources/sounds.js" type="text/javascript"></script>
         <script src="lib/resources/fonts.js" type="text/javascript"></script>
         <script src="lib/resources/content_manager.js" type="text/javascript"></script>
 
-        <!-- DISPLAY -->
         <script src="lib/display/stage.js" type="text/javascript"></script>
-        <script src="lib/display/navigator.js" type="text/javascript"></script>
+        <script src="lib/display/h_navigator.js" type="text/javascript"></script>
         <script src="lib/display/drawable.js" type="text/javascript"></script>
-        <script src="lib/display/h_screen.js" type="text/javascript"></script>
         <script src="lib/display/sprite.js" type="text/javascript"></script>
+        <script src="lib/display/h_screen.js" type="text/javascript"></script>        
         <script src="lib/display/emitter.js" type="text/javascript"></script>
         <script src="lib/display/spine_animation.js" type="text/javascript"></script>
         <script src="lib/display/atlas_animation.js" type="text/javascript"></script>
         <script src="lib/display/sprite_animation.js" type="text/javascript"></script>
-        
-        <!-- UI -->
+        <script src="lib/display/layer.js" type="text/javascript"></script>
+
         <script src="lib/ui/label.js" type="text/javascript"></script>
         <script src="lib/ui/button.js" type="text/javascript"></script>
-        
-        <!-- EVENTS -->
+        <script src="lib/ui/tableview.js" type="text/javascript"></script>
+        <script src="lib/ui/tablecell.js" type="text/javascript"></script>
+        <script src="lib/ui/scrollview.js" type="text/javascript"></script>
+        <script src="lib/ui/scrollview_content.js" type="text/javascript"></script>
+
         <script src="lib/events/notes.js" type="text/javascript"></script>
         <script src="lib/events/state_machine.js" type="text/javascript"></script>
         <script src="lib/events/looper.js" type="text/javascript"></script>
         <script src="lib/events/h_event.js" type="text/javascript"></script>
         <script src="lib/events/input.js" type="text/javascript"></script>
+        <script src="lib/display/drawing_layer.js" type="text/javascript"></script>
 
-        <!-- GAME -->
         <script src="game.js" type="text/javascript"></script>
-        <script src="game/gui/style.js" type="text/javascript"></script>
-        <script src="game/notes.js" type="text/javascript"></script>
-        <script src="game/screens/loading_screen.js" type="text/javascript"></script>
-        <script src="game/screens/game_screen.js" type="text/javascript"></script>
+        <script src="style.js" type="text/javascript"></script>
+        <script src="notes.js" type="text/javascript"></script>
+        <script src="loading_screen.js" type="text/javascript"></script>
+        <script src="rotate_layer.js" type="text/javascript"></script>
 
-        <!-- ASSETS -->
         <script src="assets/assets.js" type="text/javascript"></script>
+        
+        <script src="game/screens/main_screen.js" type="text/javascript"></script>
 
+        <!-- -------------------------------- GAME SCRIPTS HERE -->
 
-        <!-- GAME SCRIPTS -->
-
-
-
+        <script src="game/platforms/box_platform.js" type="text/javascript"></script>
+        <script src="game/platforms/float_bounce_platform.js" type="text/javascript"></script>
+        <script src="game/platforms/float_platform.js" type="text/javascript"></script>
+        <script src="game/platforms/one_way_platform.js" type="text/javascript"></script>
+        <script src="game/platforms/slope.js" type="text/javascript"></script>
+        <script src="game/platforms/smart_box_platform.js" type="text/javascript"></script>
+        <script src="game/platforms/solid_platform.js" type="text/javascript"></script>
+        
+        <script src="game/player/player.js" type="text/javascript"></script>
+        <script src="game/player/player_controller.js" type="text/javascript"></script>
+        <script src="game/player/player_states.js" type="text/javascript"></script>
+        <script src="game/player/stage_importer.js" type="text/javascript"></script>
+        <script src="game/objects/attractor.js" type="text/javascript"></script>
 
     </head>
+
     <body>
+
+
 
         <script type="text/javascript">
 
+            PIXI.utils._saidHello = true;
+
+
+
             function game_start() {
-                Config.set_game_size(900, 400, Config.MODE_FLEXIBLE_WIDTH);
+
+                Config.set_game_size(960, 640, Config.MODE_FLEXIBLE_WIDTH);
+                
+                Config.rotation_mode = Config.ROTATION_MODE_HORIZONTAL;
+
+                Config.lang = 'en'; // SG_Hooks.getLanguage(['en', 'es', 'de', 'fr', 'it', 'pt', 'tr', 'ru', 'pl', 'nl']); //TODO set all the other languages
+
                 game = new Game();
+
             }
 
             window.addEventListener("load", function () {
 
                 setTimeout(function () {
-                    game_start();
+
+                    var fs = window.RequestFileSystem || window.webkitRequestFileSystem;
+                    if (!fs) {
+                        // result.textContent = "check failed?";
+                    } else {
+                        fs(window.TEMPORARY, 100, function (fs) {
+                            game_start();
+                        }, function (err) {
+                            //TODO show message to the user
+                            var element = document.createElement('h2');
+                            element.style.color = '#FFFFFF';
+                            element.style.textAlign = 'center';
+                            element.style.lineHeight = 'normal';
+                            element.innerHTML = "Can't view the game in private browsing mode";
+                            window.document.body.appendChild(element);
+                        });
+
+                    }
+
+
                 }, 200);
 
                 if (isAndroid) {
                     setTimeout(function () {
                         window.scrollTo(0, 1);
-                    }, 0);
+                    }, 10);
                 }
 
             }, false);
 
+        </script>
 
 
-            /////////////////////
-
-           
-//            ///////////////////////
+        <script>
+//            (function (i, s, o, g, r, a, m) {
+//                i['GoogleAnalyticsObject'] = r;
+//                i[r] = i[r] || function () {
+//                    (i[r].q = i[r].q || []).push(arguments)
+//                }, i[r].l = 1 * new Date();
+//                a = s.createElement(o),
+//                        m = s.getElementsByTagName(o)[0];
+//                a.async = 1;
+//                a.src = g;
+//                m.parentNode.insertBefore(a, m)
+//            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 //
-//
-//
-//            function Mother() {
-//                this.initialize();
-//            }
-//            ;
-//
-//            Mother.prototype.initialize = function () {
-//                log('initializing mother');
-//                this.mothers_name = 'Maria';
-//            };
-//
-//            Mother.prototype.whois = function () {
-//                log('Mother');
-//            };
-//
-//            Mother.prototype.pussy = function () {
-//                log('I have pussy');
-//            };
-//
-//            //////////////////////////////
-//
-//
-//            function Father() {
-//                this.initialize();
-//            }
-//            ;
-//
-//            Father.prototype.initialize = function () {
-//                log('initializing father');
-//                this.fathers_name = 'Darko';
-//            };
-//
-//            Father.prototype.whois = function () {
-//                log('father');
-//            };
-//
-//            Father.prototype.dick = function () {
-//                log('I have dick');
-//            };
-//
-//            /////////////////////////////////
-//
-//            function Son() {
-//                this.initialize();
-//            }
-//
-//            Son.prototype.initialize = function () {
-//
-//                this.son_name = 'Darko-Maria-Junior';
-//
-//                this.extend([Father, Mother]);
-//
-//
-//
-//                log('initializing son');
-//
-//
-//            };
-//
-//            Son.prototype.whois = function () {
-//                log('Son');
-//            };
-//
-//            Son.prototype.organs = function () {
-//                log('I should have both organs');
-//            };
-//        
-//
-//
-//            //////////////////////
-//
-//            function GrandSon(){               
-//                this.initialize();
-//            }
-//            
-//            
-//            GrandSon.prototype.initialize = function(){
-//             
-//                this.extend([Son]);
-//              
-//                log('grand son is born');
-//            };
-//            
-//            
-//            
-//            gs = new GrandSon();
-
-
+//            ga('create', 'UA-72250553-1', 'auto');
+//            ga('send', 'pageview');
         </script>
 
     </body>

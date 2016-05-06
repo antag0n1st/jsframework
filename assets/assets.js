@@ -1,13 +1,42 @@
 Game.prototype.load_assets = function () {
 
-    ////////////////////////////////////////////////////////////////////////
-    //////////////////////   LOAD YOUR ASSETS HERE   ///////////////////////
 
-    ContentManager.add_spine('knight');
-    ContentManager.add_atlas('spider_atlas');    
-    ContentManager.add_image('flames');
-    
-    ContentManager.add_image('button');
-    ContentManager.add_image('button_selected');
 
+
+
+ContentManager.add_image('arrow','arrow.png');
+
+ContentManager.add_image('attractor','attractor.png');
+ContentManager.add_image('attractor2','attractor2.png');
+ContentManager.add_image('favicon','favicon.png');
+
+ContentManager.add_image('black','initial/black.png');
+ContentManager.add_image('lights1','initial/lights1.png');
+ContentManager.add_image('lights2','initial/lights2.png');
+ContentManager.add_image('loading_bg','initial/loading_bg.png');
+ContentManager.add_image('loading_fr','initial/loading_fr.png');
+ContentManager.add_image('rotate_device_to_landscape','initial/rotate_device_to_landscape.png');
+ContentManager.add_image('rotate_device_to_portrait','initial/rotate_device_to_portrait.png');
+ContentManager.add_image('white','initial/white.png');
+
+ContentManager.add_image('backspace','keyboard/backspace.png');
+ContentManager.add_image('capitalize','keyboard/capitalize.png');
+ContentManager.add_image('preview_key','keyboard/preview_key.png');
+ContentManager.add_image('space','keyboard/space.png');
+ContentManager.add_image('magical_forest','magical_forest.png');
+ContentManager.add_image('platform','platform.png');
+ContentManager.add_image('player','player.png');
+ContentManager.add_image('player2','player2.png');
+ContentManager.add_image('wall','wall.png');
+
+ContentManager.add_file('de','assets/localization/de.txt');
+ContentManager.add_file('en','assets/localization/en.txt');
+ContentManager.add_file('es','assets/localization/es.txt');
+ContentManager.add_file('fr','assets/localization/fr.txt');
+ContentManager.add_file('mk','assets/localization/mk.txt');
+
+
+
+
+ 
 };
