@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Ori</title>
+        <title>SaberScriptJS</title>
 
         <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
 
@@ -150,27 +150,8 @@
 
             window.addEventListener("load", function () {
 
-                setTimeout(function () {
-
-                    var fs = window.RequestFileSystem || window.webkitRequestFileSystem;
-                    if (!fs) {
-                        // result.textContent = "check failed?";
-                    } else {
-                        fs(window.TEMPORARY, 100, function (fs) {
+                setTimeout(function () {                      
                             game_start();
-                        }, function (err) {
-                            //TODO show message to the user
-                            var element = document.createElement('h2');
-                            element.style.color = '#FFFFFF';
-                            element.style.textAlign = 'center';
-                            element.style.lineHeight = 'normal';
-                            element.innerHTML = "Can't view the game in private browsing mode";
-                            window.document.body.appendChild(element);
-                        });
-
-                    }
-
-
                 }, 200);
 
                 if (isAndroid) {

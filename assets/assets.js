@@ -2,10 +2,7 @@ Game.prototype.load_assets = function () {
 
 
 
-
-
 ContentManager.add_image('arrow','arrow.png');
-
 ContentManager.add_image('attractor','attractor.png');
 ContentManager.add_image('attractor2','attractor2.png');
 ContentManager.add_image('favicon','favicon.png');
@@ -29,12 +26,7 @@ ContentManager.add_image('player','player.png');
 ContentManager.add_image('player2','player2.png');
 ContentManager.add_image('wall','wall.png');
 
-ContentManager.add_file('de','assets/localization/de.txt');
 ContentManager.add_file('en','assets/localization/en.txt');
-ContentManager.add_file('es','assets/localization/es.txt');
-ContentManager.add_file('fr','assets/localization/fr.txt');
-ContentManager.add_file('mk','assets/localization/mk.txt');
-
 
 
 
