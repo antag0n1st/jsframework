@@ -13,6 +13,7 @@ module.exports = function (grunt) {
                     "lib/external/howler.js",
                     "lib/external/font.js",
                     "lib/external/sat.js",
+                    "lib/external/kibo.js",
                     "lib/external/visibility.core.js",
                     
                     "lib/utility/*.js",
@@ -49,12 +50,19 @@ module.exports = function (grunt) {
                     "lib/display/emitter.js",
                     "lib/display/spine_animation.js",                    
                     "lib/display/layer.js",
+                    "lib/display/drawing_layer.js",
                     
                     
                     "lib/ui/label.js",
                     "lib/ui/button.js",
                     "lib/ui/tableview.js",
                     "lib/ui/tablecell.js",
+					
+                    "style.js",
+                    "keyboard.js",
+                    "loading_screen.js",
+                    "notes.js",
+                    "rotate_layer.js",
                     
                     "game.js",
                     "assets/assets.js",
