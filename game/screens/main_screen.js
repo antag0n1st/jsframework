@@ -47,14 +47,6 @@
         this.player.platforms.push(platform4);
         this.player.attractors.push(attractor);
 
-        
-
-//        this.arrow_point = new V();
-//        
-//        this.attraction_timeout = 0;
-//
-//        this.launch_angle = 0;
-//        this.launch_speed = 0;
 
         this.sensor = new SAT.Box(new V(-Config.screen_width / 2, Config.screen_height), Config.screen_width * 2, 500).toPolygon();
 
@@ -66,6 +58,7 @@
    
 
     MainScreen.prototype.on_mouse_down = function (event, object) {
+      
         this.player.on_mouse_down(event, object);
     };
 

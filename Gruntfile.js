@@ -22,6 +22,7 @@ module.exports = function (grunt) {
                     "lib/tweens/bezier.js",
                     "lib/tweens/tween.js",
                     "lib/tweens/timer.js",
+                    "lib/tweens/easing.js",
                     "lib/tweens/tween_alpha.js",
                     "lib/tweens/tween_blink.js",
                     "lib/tweens/tween_float.js",
@@ -34,6 +35,12 @@ module.exports = function (grunt) {
                     "lib/tweens/tween_shake.js",
                     "lib/tweens/tween_squash_stretch.js",
                     "lib/tweens/tween_time.js",
+                    "lib/tweens/stepper.js",
+                    "lib/tweens/tween_back_forth.js",
+                    "lib/tweens/tween_pop.js",
+                    "lib/tweens/tween_scale_x.js",
+                    "lib/tweens/tween_scale_y.js",
+                    "lib/tweens/tween_tint.js",
                     
                     "lib/events/*.js", 
                     
