@@ -27,17 +27,13 @@
         this.set_background();
         this.set_background_scale();
         
-        // SOFTGAMES HOOKS
-        //SG_Hooks.setOrientationHandler(this.check_rotation);  // Provide a function f, that handles orientation changes for your game.
-
-        //SG_Hooks.setResizeHandler(this.resize); // Provide the function f, that handles screen resizing for your game.
-
+        Howler.mute(!Config.is_sound_on);
+     
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////  LOADING SCREEN ASSETS ////////////////////////////////
 
         
-        // ContentManager.add_image('logo_ingame');
-        
+        // ContentManager.add_image('logo');        
         ContentManager.add_image('loading_bg','initial/loading_bg.png');
         ContentManager.add_image('loading_fr','initial/loading_fr.png');
         ContentManager.add_image('white','initial/white.png');
@@ -68,14 +64,8 @@
                     Localization.instance().load();
 
                     game.playlist = new Playlist();
-                    game.playlist.add(Sounds.background_music, 0.7);
+                    //game.playlist.add(Sounds.background_music, 0.7);
                     
-                   // SG_Hooks.start();
-                    
-                   // SG_Hooks.startSingleplayerMode(function(){return true;}); //TODO this is a hack
-                   // SG_Hooks.startMultiplayerMode(function(){return true;}); //TODO this is a hack
-                  //  SG_Hooks.registerObserver(function(){return true;}); //TODO this is a hack
-
                     ////////////////////////////////////////////////////////
                     var screen = new MainScreen(); // initial screen
                     ////////////////////////////////////////////////////////
