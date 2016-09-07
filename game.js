@@ -28,6 +28,7 @@
         this.set_background_scale();
         
         Howler.mute(!Config.is_sound_on);
+        Howler.autoSuspend = false;
      
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////  LOADING SCREEN ASSETS ////////////////////////////////
