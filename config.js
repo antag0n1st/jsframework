@@ -13,6 +13,7 @@ Config.is_auto_run = false;
 Config.is_game_paused = false;
 Config.is_sound_on = true;
 Config.lang = 'en';
+Config.background_color = 0xffffff;
 
 /**
  *  Number of miliseconds to pause the drawing

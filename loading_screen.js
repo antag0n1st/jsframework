@@ -1,70 +1,75 @@
 (function (window, undefined) {
 
-    function LoadingScreen() {
-        this.initialize();
+    function LoadingScreen(callback) {
+        this.initialize(callback);
     }
 
     LoadingScreen.prototype = new HScreen();
     LoadingScreen.prototype.screen_initialize = LoadingScreen.prototype.initialize;
-    LoadingScreen.prototype.initialize = function () {
+    LoadingScreen.prototype.initialize = function (callback) {
         this.screen_initialize();
 
-        this.background = new Sprite('white');
-        this.background.set_anchor(0.5, 0.5);
+        this.callback = callback;
 
+
+        this.background = new Sprite('white');
+        this.background.strech(Config.screen_width,Config.screen_height);
         this.add_child(this.background);
 
-        this.logo = new Sprite(''); //TODO put your logo here
-        this.logo.set_anchor(0.5, 0.5);
 
-
-        this.loading_bg = new Sprite('loading_bg');
-        this.loading_bg.set_anchor(0.5, 0.5);
-
-        this.loading_fr = new Sprite('loading_fr');
-        this.loading_fr.set_anchor(0, 0.5);
-        this.loading_fr.z_index = 2;
-
-        this.loading_width = this.loading_fr.width;
-
-        this.add_child(this.loading_bg);
-        this.add_child(this.loading_fr);
+        this.logo = new Sprite(null);//Put logo image here
+        this.logo.set_position(Config.screen_width / 2 - 150, 200);
         this.add_child(this.logo);
+
+        this.is_animating = true;
+
+        this.loading_bar = new LoadingBar('loading_fr_pice', 'loading_bg');
+        this.add_child(this.loading_bar);
+
+        this.last_loaded_count = 0;
 
         this.set_positions();
 
+
+
+
     };
+
+    LoadingScreen.prototype.on_logo_finished = function () {
+        if (this.callback) {
+            this.is_animating = false;
+            //this.callback();
+        }
+    };
+
+
 
     LoadingScreen.prototype.set_positions = function () {
 
         var mid_x = Config.screen_width / 2;
         var height = Config.screen_height;
 
-        this.logo.set_position(mid_x, height * 0.4);
-        this.logo.on_mouse_up = function(){
-            window.location = "http://m.softgames.com";
-        };
-        this.loading_bg.set_position(mid_x, height * 0.7);
-        this.loading_fr.set_position(mid_x + 2 - this.loading_bg.width / 2, height * 0.7);
+        this.loading_bar.set_position(mid_x, height * 0.6);
 
         this.background.set_position(mid_x, height / 2);
-        this.background.width = Config.screen_width * 1.5;
-        this.background.height = Config.screen_height * 1.5;
+        this.background.width = Config.screen_width * 1.2;
+        this.background.height = Config.screen_height * 1.2;
+        
+        
 
     };
 
     LoadingScreen.prototype.show = function () {
         HScreen.prototype.show.call(this);
-        game.input.add(this.logo);
     };
 
     LoadingScreen.prototype.hide = function () {
         HScreen.prototype.hide.call(this);
-        game.input.remove(this.logo);
     };
 
-    LoadingScreen.prototype.update = function () {
-        HScreen.prototype.update.call(this);
+    LoadingScreen.prototype.update = function (dt) {
+
+        HScreen.prototype.update.call(this, dt);
 
         var to_load = ContentManager.count_to_load;
         var loaded = ContentManager.count_loaded;
@@ -73,9 +78,14 @@
         loading = (loading <= 0) ? 0.01 : loading;
         loading = (to_load === 0) ? 1 : loading;
 
-        this.loading_fr.width = loading * this.loading_width;
+        if (this.last_loaded_count != loaded) {
+            this.last_loaded_count = loaded;
+            this.loading_bar.set_percent(loading, true);
+        }
 
     };
+
+
 
     LoadingScreen.prototype.on_resize = function () {
         this.set_positions();

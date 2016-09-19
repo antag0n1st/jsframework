@@ -8,12 +8,12 @@
     Style.initialize = function () {
         // this.parent_initialize();
        Style.SAMPLE_BUTTON = {
-            image_normal: 'button_name',
-            image_selected: 'button_name_selected',
+            image_normal: 'button',
+            image_selected: 'button',
             font_name: 'arial',
             font_size: 35,
-            font_color: "#5f6a23",
-            shadow_color: "#fefefd",
+            font_color: "#ffffff",
+            shadow_color: "#555555",
             shadow_distance: 3,
             padding: 4
         };
@@ -24,7 +24,8 @@
             font_color: "#ffffff",
             shadow_color: "#777777",
             shadow_distance: 3,
-            padding: 4
+            padding: 4,
+            text_align: Label.TEXT_H_ALIGN_CENTER,
         };
     };
     

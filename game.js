@@ -13,33 +13,29 @@
 
         this.input.add_listener('stage');
 
-        this.playlist = null;
+        this.playlist = new Playlist();
 
         this.rotate_layer = null;
 
-        /**
-         * 
-         */
         this.navigator = new HNavigator(this.stage);
 
         this.is_rotation_screen_shown = false;
 
-        this.set_background();
-        this.set_background_scale();
-        
         Howler.mute(!Config.is_sound_on);
+        Howler.volume(0.4);
         Howler.autoSuspend = false;
-     
+        
+
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////  LOADING SCREEN ASSETS ////////////////////////////////
 
-        
+
         // ContentManager.add_image('logo');        
-        ContentManager.add_image('loading_bg','initial/loading_bg.png');
-        ContentManager.add_image('loading_fr','initial/loading_fr.png');
-        ContentManager.add_image('white','initial/white.png');
-        ContentManager.add_image('rotate_device_to_landscape','initial/rotate_device_to_landscape.png');
-        ContentManager.add_image('rotate_device_to_portrait','initial/rotate_device_to_portrait.png');
+        ContentManager.add_image('loading_bg', 'initial/loading_bg.png');
+        ContentManager.add_image('loading_fr_pice', 'initial/loading_fr_pice.png');
+        ContentManager.add_image('white', 'initial/white.png');
+        ContentManager.add_image('rotate_device_to_landscape', 'initial/rotate_device_to_landscape.png');
+        ContentManager.add_image('rotate_device_to_portrait', 'initial/rotate_device_to_portrait.png');
 
         // DON'T ADD ASSETS HERE !!!
 
@@ -64,9 +60,9 @@
                     Style.initialize();
                     Localization.instance().load();
 
-                    game.playlist = new Playlist();
-                    //game.playlist.add(Sounds.background_music, 0.7);
-                    
+                    game.playlist.add(Sounds.background, 0.7);
+                    game.playlist.play();
+
                     ////////////////////////////////////////////////////////
                     var screen = new MainScreen(); // initial screen
                     ////////////////////////////////////////////////////////
@@ -94,39 +90,47 @@
 
         });
 
-        if (Config.debug_info) {
 
-            this.debug_label = new Label();
-            this.debug_label.text = '-';
-            this.debug_label.font_size = Config.is_low_resolution ? 10 : 20;
-            this.debug_label.font_color = "#000000";
-            this.debug_label.background_color = "#ffffff";
-            this.debug_label.background_alpha = 0.8;
-            this.debug_label.z_index = 10000;
-            this.stage.add(this.debug_label);
+        this.debug_label = new Label();
+        this.debug_label.text = '';
+        this.debug_label.font_size = 25;
+        this.debug_label.font_color = "#333333";
+        this.debug_label.z_index = 10000;
+        this.stage.add(this.debug_label);
 
-            this.debug_label2 = new Label();
-            this.debug_label2.text = '-';
-            this.debug_label2.font_size = Config.is_low_resolution ? 10 : 20;
-            this.debug_label2.font_color = "#000000";
-            this.debug_label2.background_color = "#ffffff";
-            this.debug_label2.background_alpha = 0.8;
-            this.debug_label2.z_index = 10000;
-            this.stage.add(this.debug_label2);
+        this.debug_label2 = new Label();
+        this.debug_label2.text = '';
+        this.debug_label2.font_size = 25;
+        this.debug_label2.font_color = "#333333";
+        this.debug_label2.z_index = 10000;
+        this.stage.add(this.debug_label2);
 
-            this.debug_label.set_position(20, Config.screen_height - 80);
-            this.debug_label2.set_position(20, Config.screen_height - 40);
+        this.debug_label.set_position(20, Config.screen_height - 80);
+        this.debug_label2.set_position(20, Config.screen_height - 40);
 
-        }
+       
 
     };
 
     Game.prototype.handle_visibility = function () {
-        if (Visibility.state() === 'visible' && Config.is_sound_on) {
-            Howler.mute(false);
+
+        if (Visibility.state() === 'visible') {
+
+            if (Config.is_sound_on) {
+                Howler.mute(false);
+            }
+
+            if (game.navigator.current_screen) {
+                game.navigator.current_screen.on_visibility_change(true);
+            }
+
         } else if (Visibility.state() === 'hidden') {
             Howler.mute(true);
+            if (game.navigator.current_screen) {
+                game.navigator.current_screen.on_visibility_change(false);
+            }
         }
+
     };
 
     Game.prototype.resize = function () {
@@ -147,7 +151,9 @@
         }
 
         for (var i = 0; i < this.navigator.screens.length; i++) {
-            this.navigator.screens[i].on_resize();
+            var screen = this.navigator.screens[i];
+            screen.set_size(Config.screen_width, Config.screen_height)
+            screen.on_resize(Config.screen_width, Config.screen_height);
         }
 
 
@@ -156,50 +162,8 @@
             this.rotate_layer.on_resize();
         }
 
-        this.set_background_scale();
-
     };
 
-    Game.prototype.set_background = function () {
-        return;
-//        if (!Config.is_mobile()) {
-//
-//            this.left_background = document.createElement("img");
-//            this.left_background.src = ContentManager.base_url + 'assets/images/left_background.jpg';
-//
-//            this.left_background.setAttribute("alt", "left_background");
-//            this.left_background.style.position = 'absolute';
-//
-//
-//            this.right_background = document.createElement("img");
-//            this.right_background.src = ContentManager.base_url + 'assets/images/right_background.jpg';
-//
-//            this.right_background.setAttribute("alt", "right_background");
-//            this.right_background.style.position = 'absolute';
-//
-//            document.body.insertBefore(this.left_background, this.stage.canvas);
-//            document.body.appendChild(this.right_background);
-//        }
-    };
-
-    Game.prototype.set_background_scale = function () {
-
-        var left = Math.round_decimal(this.stage.canvas.style.left.replace('px', ''), 4);
-
-        var aspect = 400 / 700; //TODO set the actual size of the side images
-
-        var width = aspect * Config.canvas_height;
-
-//        if (!Config.is_mobile()) {
-//            this.left_background.style.width = width + 'px';
-//            this.left_background.style.height = Config.canvas_height + 'px';
-//            this.left_background.style.left = (left - width) + 'px';
-//
-//            this.right_background.style.width = width + 'px';
-//            this.right_background.style.height = Config.canvas_height + 'px';
-//            this.right_background.style.left = (left + Config.canvas_width) + 'px';
-//        }
-    };
 
     Game.prototype.check_rotation = function () {
 

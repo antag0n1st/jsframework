@@ -252,7 +252,7 @@
                 //  Sounds.jump_1.volume(0.7).play();
             }
 
-
+            Sounds.jump.volume(0.7).play();
         }
 
         if (prev_state.name === 'wall_drag') {
