@@ -1,0 +1,12 @@
+[
+    {"name":"Default","color":"transparent"},
+    {"name":"Pushable Object","color":"#126871"},
+    {"name":"Solid Platform","color":"#984320"},
+    {"name":"Slope","color":"#184390"},
+    {"name":"Moving Platform","color":"#001482"},
+    {"name":"Passable Platform","color":"#aa4870"},
+    {"name":"Passable Bounce Platform","color":"#a12870"},
+    {"name":"Spear","color":"#123456"},
+    {"name":"Player","color":"#654321"},    
+    {"name":"Check Point","color":"#60032F"}
+]

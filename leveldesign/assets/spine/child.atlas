@@ -1,0 +1,173 @@
+
+child.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+attack-trail
+  rotate: false
+  xy: 2, 144
+  size: 178, 104
+  orig: 178, 104
+  offset: 0, 0
+  index: -1
+eyes_closed
+  rotate: false
+  xy: 144, 75
+  size: 21, 9
+  orig: 21, 9
+  offset: 0, 0
+  index: -1
+face
+  rotate: false
+  xy: 144, 100
+  size: 35, 42
+  orig: 35, 42
+  offset: 0, 0
+  index: -1
+hair
+  rotate: false
+  xy: 182, 207
+  size: 42, 41
+  orig: 42, 41
+  offset: 0, 0
+  index: -1
+left_foot
+  rotate: false
+  xy: 144, 50
+  size: 16, 12
+  orig: 16, 12
+  offset: 0, 0
+  index: -1
+left_hand
+  rotate: false
+  xy: 246, 216
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+left_leg
+  rotate: false
+  xy: 152, 32
+  size: 5, 16
+  orig: 5, 16
+  offset: 0, 0
+  index: -1
+left_lower_hand
+  rotate: false
+  xy: 210, 153
+  size: 7, 13
+  orig: 7, 13
+  offset: 0, 0
+  index: -1
+left_sleve
+  rotate: false
+  xy: 197, 151
+  size: 11, 15
+  orig: 11, 15
+  offset: 0, 0
+  index: -1
+left_upper_hand
+  rotate: false
+  xy: 144, 31
+  size: 6, 17
+  orig: 6, 17
+  offset: 0, 0
+  index: -1
+neck
+  rotate: false
+  xy: 152, 20
+  size: 4, 10
+  orig: 4, 10
+  offset: 0, 0
+  index: -1
+normal_eyes
+  rotate: false
+  xy: 144, 64
+  size: 21, 9
+  orig: 21, 9
+  offset: 0, 0
+  index: -1
+normal_mouth
+  rotate: false
+  xy: 168, 92
+  size: 9, 6
+  orig: 9, 6
+  offset: 0, 0
+  index: -1
+right_foot
+  rotate: false
+  xy: 226, 210
+  size: 18, 12
+  orig: 18, 12
+  offset: 0, 0
+  index: -1
+right_hand
+  rotate: false
+  xy: 246, 225
+  size: 8, 7
+  orig: 8, 7
+  offset: 0, 0
+  index: -1
+right_leg
+  rotate: false
+  xy: 144, 13
+  size: 6, 16
+  orig: 6, 16
+  offset: 0, 0
+  index: -1
+right_lower_hand
+  rotate: false
+  xy: 246, 234
+  size: 8, 14
+  orig: 8, 14
+  offset: 0, 0
+  index: -1
+right_sleve
+  rotate: false
+  xy: 207, 188
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+right_upper_hand
+  rotate: false
+  xy: 207, 168
+  size: 10, 18
+  orig: 10, 18
+  offset: 0, 0
+  index: -1
+shirt
+  rotate: false
+  xy: 182, 168
+  size: 23, 37
+  orig: 23, 37
+  offset: 0, 0
+  index: -1
+shortz_base
+  rotate: false
+  xy: 144, 86
+  size: 22, 12
+  orig: 22, 12
+  offset: 0, 0
+  index: -1
+shortz_left
+  rotate: false
+  xy: 182, 145
+  size: 13, 21
+  orig: 13, 21
+  offset: 0, 0
+  index: -1
+shortz_right
+  rotate: false
+  xy: 226, 224
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: -1
+wepon
+  rotate: false
+  xy: 2, 2
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
