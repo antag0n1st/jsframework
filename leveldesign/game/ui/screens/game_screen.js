@@ -482,6 +482,12 @@
     };
 
     GameScreen.prototype.deselect_all = function () {
+
+        if (this.queue_path !== null) {
+            this.obsticles.push(this.queue_path);
+            this.queue_path = null;
+        }
+
         this.end_polygon();
         this.deselect_images();
         this.deselect_graphics();
@@ -491,10 +497,10 @@
     GameScreen.prototype.on_m = function () {
         this.on_snap_axis_button();
     };
-    
+
     GameScreen.prototype.on_o = function () {
-        if(this.selected_obsticle){
-            this.selected_obsticle.set_anchor(0.5,0.5);
+        if (this.selected_obsticle) {
+            this.selected_obsticle.set_anchor(0.5, 0.5);
             this.update_inspector_with_obsticle(this.selected_obsticle);
         }
     };

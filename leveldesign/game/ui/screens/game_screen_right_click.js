@@ -12,16 +12,8 @@ GameScreen.prototype.on_right_mouse_down = function (event) {
         this.last_move_position = new Vector(this.start_drag_point.x, this.start_drag_point.y);
 
     }
-    
-    
 
-
-    this.deselect_images();
-    this.deselect_graphics();
-
-    this.update_inspector_with_obsticle();
-    
-    
+    this.deselect_all();
 
 };
 
