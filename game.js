@@ -6,10 +6,11 @@
 
     Game.prototype.initialize = function () {
 
+        this.device = new Device(); // read the device
 
         this.stage = new Stage();
 
-        this.input = new Input();
+        this.input = new Input(this.device);
 
         this.input.add_listener('stage');
 
@@ -24,11 +25,9 @@
         Howler.mute(!Config.is_sound_on);
         Howler.volume(0.4);
         Howler.autoSuspend = false;
-        
 
         ////////////////////////////////////////////////////////////////////////////
-        ////////////////////  LOADING SCREEN ASSETS ////////////////////////////////
-
+        ////////////////////  LOADING INITIAL ASSETS ////////////////////////////////
 
         // ContentManager.add_image('logo');        
         ContentManager.add_image('loading_bg', 'initial/loading_bg.png');
@@ -45,11 +44,12 @@
 
         Ticker.add_listener(game);
         Ticker.set_fps(30); // min fps 
-        Ticker.start();
+        Ticker.start(); // start the life cycle of animation
 
         ContentManager.download_resources(this, function () {
 
             game.rotate_layer = new RotateLayer();
+
             game.load_assets();
             game.navigator.add(new LoadingScreen());
 
@@ -59,9 +59,6 @@
 
                     Style.initialize();
                     Localization.instance().load();
-
-                    game.playlist.add(Sounds.background, 0.7);
-                    game.playlist.play();
 
                     ////////////////////////////////////////////////////////
                     var screen = new MainScreen(); // initial screen
@@ -108,7 +105,7 @@
         this.debug_label.set_position(20, Config.screen_height - 80);
         this.debug_label2.set_position(20, Config.screen_height - 40);
 
-       
+
 
     };
 
@@ -135,27 +132,21 @@
 
     Game.prototype.resize = function () {
 
+        this.device.calculate_sizes();
+
         this.stage.renderer.view.style.width = Math.ceil(Config.canvas_width) + "px";
         this.stage.renderer.view.style.height = Math.ceil(Config.canvas_height) + "px";
-
         this.stage.renderer.resize(Config.screen_width, Config.screen_height);
 
-        if (Config.window_mode === Config.MODE_FLEXIBLE_HEIGHT_CENTERED) {
-            if (Config.window_width > Config.game_width) {
-                // it should be placed in the center       
-                var style = Math.round(((Config.window_width / 2) - Config.canvas_width / 2)) + "px";
-                this.stage.canvas.style.left = style;
-            } else {
-                this.stage.canvas.style.left = "0px";
-            }
+        if (Config.window_mode === Config.MODE_CENTERED) {
+            this.stage.adjust_canvas_position(this.stage.renderer.view);
         }
 
         for (var i = 0; i < this.navigator.screens.length; i++) {
             var screen = this.navigator.screens[i];
-            screen.set_size(Config.screen_width, Config.screen_height)
+            screen.set_size(Config.screen_width, Config.screen_height);
             screen.on_resize(Config.screen_width, Config.screen_height);
         }
-
 
         if (this.rotate_layer) {
             this.check_rotation();
@@ -167,55 +158,64 @@
 
     Game.prototype.check_rotation = function () {
 
-        if (Config.rotation_mode === Config.ROTATION_MODE_ALLOW) {
+        if (Config.rotation_mode === Config.ROTATION_MODE_HORIZONTAL) {
 
-        } else if (Config.rotation_mode === Config.ROTATION_MODE_HORIZONTAL) {
-            if (Config.screen_width < Config.screen_height) {
+            if (Config.window_width < Config.window_height) {
                 this.show_rotate_device();
             } else {
                 this.hide_rotate_device();
             }
+
         } else if (Config.rotation_mode === Config.ROTATION_MODE_VERTICAL) {
-            if (Config.screen_width > Config.screen_height) {
+
+            if (Config.window_width > Config.window_height) {
                 this.show_rotate_device();
             } else {
                 this.hide_rotate_device();
             }
+
         }
+
     };
 
     Game.prototype.show_rotate_device = function () {
 
         if (!this.is_rotation_screen_shown) {
+            
             this.is_rotation_screen_shown = true;
             this.rotate_layer.z_index = 9999999999;
             this.navigator.current_screen.add_child(this.rotate_layer);
+            
             if (Config.is_sound_on) {
                 Howler.mute(true);
             }
         }
+        
     };
 
     Game.prototype.hide_rotate_device = function () {
+        
         if (this.is_rotation_screen_shown) {
+            
             this.is_rotation_screen_shown = false;
             this.rotate_layer.remove_from_parent();
+            
             if (Config.is_sound_on) {
                 Howler.mute(false);
             }
         }
+        
     };
 
-    /**
-     * @description This is the main game loop
-     */
     Game.prototype.tick = function () {
 
-        Actions.run();
+        /////////////////////// MAIN LOOP /////////////////////////
 
-        this.navigator.update();
+        Actions.run(); // update tweens
 
-        this.stage.update();
+        this.navigator.update(); // update the sceen and its objects
+
+        this.stage.update(); // render the stage
 
         SAT.pool.reset();
 

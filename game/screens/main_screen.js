@@ -12,7 +12,11 @@
         this.screen_initialize();
         this.TYPE = MainScreen.TYPE;
 
-        this.background = new Sprite('black');
+        // lets add some music 
+        game.playlist.add(Sounds.background, 0.7);
+        game.playlist.play();
+
+        this.background = new Sprite('white');
         this.background.strech(Config.screen_width, Config.screen_height);
         this.add_child(this.background);
 
@@ -46,7 +50,7 @@
         } else if (sender.tag === 1) {
             var screen = new GuiScreen();
             game.navigator.add(screen, HNavigator.ANIMATION_TYPE_FADEOUT, 200);
-        } 
+        }
     };
 
     MainScreen.prototype.update = function (dt) {

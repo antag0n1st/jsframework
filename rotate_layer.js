@@ -24,7 +24,6 @@
 
         this.rotate = new Sprite(image_name);//TODO fix this in future
         this.rotate.set_anchor(0.5, 0.5);
-        this.rotate.set_position(Config.screen_width / 2, Config.screen_height / 2);
         this.add_child(this.rotate);
 
         this.rotate_label = new Label();
@@ -32,15 +31,19 @@
         this.rotate_label.text_align = Label.TEXT_H_ALIGN_CENTER;
         this.rotate_label.txt = lang("Please rotate your device");
         this.rotate_label.font_color = "#ffffff";
-        this.rotate_label.font_size = 18;
-        this.rotate_label.set_position(Config.screen_width / 2, Config.screen_height / 2 + 60);
+        this.rotate_label.font_size = 40;
         this.add_child(this.rotate_label);
 
+        this.set_positions();
+    };
+    
+    RotateLayer.prototype.set_positions = function () {
+        this.rotate.set_position(Config.screen_width / 2, Config.screen_height / 2 - 100);
+        this.rotate_label.set_position(Config.screen_width / 2, Config.screen_height / 2 + 100);
     };
 
     RotateLayer.prototype.on_resize = function () {
-        this.rotate.set_position(Config.screen_width / 2, Config.screen_height / 2);
-        this.rotate_label.set_position(Config.screen_width / 2, Config.screen_height / 2 + 60);
+        this.set_positions();
     };
 
     RotateLayer.prototype.on_added_to_parent = function (parent) {

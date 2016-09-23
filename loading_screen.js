@@ -11,11 +11,9 @@
 
         this.callback = callback;
 
-
         this.background = new Sprite('white');
         this.background.strech(Config.screen_width,Config.screen_height);
         this.add_child(this.background);
-
 
         this.logo = new Sprite(null);//Put logo image here
         this.logo.set_position(Config.screen_width / 2 - 150, 200);
@@ -30,19 +28,7 @@
 
         this.set_positions();
 
-
-
-
     };
-
-    LoadingScreen.prototype.on_logo_finished = function () {
-        if (this.callback) {
-            this.is_animating = false;
-            //this.callback();
-        }
-    };
-
-
 
     LoadingScreen.prototype.set_positions = function () {
 
@@ -55,16 +41,6 @@
         this.background.width = Config.screen_width * 1.2;
         this.background.height = Config.screen_height * 1.2;
         
-        
-
-    };
-
-    LoadingScreen.prototype.show = function () {
-        HScreen.prototype.show.call(this);
-    };
-
-    LoadingScreen.prototype.hide = function () {
-        HScreen.prototype.hide.call(this);
     };
 
     LoadingScreen.prototype.update = function (dt) {
@@ -85,12 +61,9 @@
 
     };
 
-
-
     LoadingScreen.prototype.on_resize = function () {
         this.set_positions();
     };
-
 
     window.LoadingScreen = LoadingScreen;
 

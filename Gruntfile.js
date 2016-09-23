@@ -4,9 +4,15 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
+            options: {
+                beautify: false,
+                preserveComments: false,
+                screwIE8:false
+            },
             build: {
                 src: [
                     "config.js",
+                    "boot.js",
                     
                     "lib/external/pixi.js",
                     "lib/external/pixi-spine.js",
@@ -21,26 +27,7 @@ module.exports = function (grunt) {
                     "lib/tweens/actions.js",
                     "lib/tweens/bezier.js",
                     "lib/tweens/tween.js",
-                    "lib/tweens/timer.js",
-                    "lib/tweens/easing.js",
-                    "lib/tweens/tween_alpha.js",
-                    "lib/tweens/tween_blink.js",
-                    "lib/tweens/tween_float.js",
-                    "lib/tweens/tween_move_to.js",
-                    "lib/tweens/tween_pulsate.js",
-                    "lib/tweens/tween_rotate.js",
-                    "lib/tweens/tween_rotate_by.js",
-                    "lib/tweens/tween_rotate_to.js",
-                    "lib/tweens/tween_scale.js",
-                    "lib/tweens/tween_shake.js",
-                    "lib/tweens/tween_squash_stretch.js",
-                    "lib/tweens/tween_time.js",
-                    "lib/tweens/stepper.js",
-                    "lib/tweens/tween_back_forth.js",
-                    "lib/tweens/tween_pop.js",
-                    "lib/tweens/tween_scale_x.js",
-                    "lib/tweens/tween_scale_y.js",
-                    "lib/tweens/tween_tint.js",
+                    "lib/tweens/*.js",
                     
                     "lib/events/*.js", 
                     
@@ -51,22 +38,14 @@ module.exports = function (grunt) {
                     "lib/display/drawable.js",
                     "lib/display/sprite.js",
                     "lib/display/h_screen.js",                    
-                    "lib/display/sprite_animation.js",
-                    "lib/display/animation.js",
-                    "lib/display/atlas_animation.js",
-                    "lib/display/emitter.js",
-                    "lib/display/spine_animation.js",                    
-                    "lib/display/layer.js",
-                    "lib/display/drawing_layer.js",
-                    
+                    "lib/display/*.js",                    
                     
                     "lib/ui/label.js",
-                    "lib/ui/button.js",
-                    "lib/ui/tableview.js",
-                    "lib/ui/tablecell.js",
+                    "lib/ui/popup.js",
+                    "lib/ui/scrollview_content.js",
+                    "lib/ui/*.js",
 					
                     "style.js",
-                    "keyboard.js",
                     "loading_screen.js",
                     "notes.js",
                     "rotate_layer.js",

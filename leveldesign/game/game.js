@@ -27,8 +27,6 @@
 
         ////////////////////////////////////////////////////////////////////////////
 
-        window.game = this;
-
         ContentManager.download_resources(this.stage, function() {
 
             game.load_assets();
