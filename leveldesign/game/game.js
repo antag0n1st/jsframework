@@ -26,6 +26,8 @@
         // DON'T ADD ASSETS HERE !!!
 
         ////////////////////////////////////////////////////////////////////////////
+        
+        game = this;
 
         ContentManager.download_resources(this.stage, function() {
 

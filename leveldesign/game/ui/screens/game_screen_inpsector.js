@@ -709,7 +709,7 @@ GameScreen.prototype.update_objects_list = function () {
 
         if (obsticle.get_parent().name === this.active_layer.name) {
             var name = obsticle.name ? obsticle.name : obsticle.inner_type;
-            html += '<li onclick="game.navigator.current_screen.on_object_list_click(' + obsticle.id + ');">' + name + ' <img onclick="game.navigator.current_screen.on_object_delete_click();" src="assets/images/close_x.png" /></li>';
+            html += '<li onclick="game.navigator.current_screen.on_object_list_click(' + obsticle.id + ');">' + name + ' <img onclick="game.navigator.current_screen.on_object_delete_click(' + obsticle.id + ');" src="assets/images/close_x.png" /></li>';
 
         }
 
@@ -722,7 +722,7 @@ GameScreen.prototype.update_objects_list = function () {
 GameScreen.prototype.on_object_list_click = function (id) {
     for (var i = 0; i < this.obsticles.length; i++) {
         var obsticle = this.obsticles[i];
-        if (obsticle.id == id) {
+        if (obsticle.id === id) {
 
             if (this.selected_obsticle) {
                 this.selected_obsticle.is_selected = false;
@@ -736,7 +736,9 @@ GameScreen.prototype.on_object_list_click = function (id) {
     }
 };
 
-GameScreen.prototype.on_object_delete_click = function () {
+GameScreen.prototype.on_object_delete_click = function (id) {
+
+    this.on_object_list_click(id);
 
     this.on_delete();
     this.update_objects_list();
