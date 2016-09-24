@@ -4,7 +4,7 @@
         this.initialize();
     }
 
-    GameScreen.prototype = new Screen();
+    GameScreen.prototype = new HScreen();
     GameScreen.prototype.screen_initialize = GameScreen.prototype.initialize;
 
 
@@ -204,7 +204,7 @@
         context.fillStyle = "#094837";
         context.fillRect(0, 0, Config.screen_width, Config.screen_height);
 
-        Screen.prototype.draw.call(this, context);
+        HScreen.prototype.draw.call(this, context);
 
         this.draw_path_last_point(context);
     };
@@ -245,7 +245,7 @@
     };
 
     GameScreen.prototype.on_draw_finished = function (context) {
-        Screen.prototype.on_draw_finished.call(this, context);
+        HScreen.prototype.on_draw_finished.call(this, context);
 
         this.draw_queue(context);
 
@@ -351,7 +351,7 @@
     };
 
     GameScreen.prototype.show = function () {
-        Screen.prototype.show.call(this);
+        HScreen.prototype.show.call(this);
         game.input.add(this);
         game.input.add(this.polygon_button);
         game.input.add(this.box_button);
@@ -369,7 +369,7 @@
     };
 
     GameScreen.prototype.hide = function () {
-        Screen.prototype.hide.call(this);
+        HScreen.prototype.hide.call(this);
     };
 
     GameScreen.prototype.end_polygon = function () {

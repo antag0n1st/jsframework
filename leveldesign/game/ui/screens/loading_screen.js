@@ -4,7 +4,7 @@
         this.initialize();
     }    
     
-    LoadingScreen.prototype = new Screen();
+    LoadingScreen.prototype = new HScreen();
     LoadingScreen.prototype.screen_initialize = LoadingScreen.prototype.initialize;    
     LoadingScreen.prototype.initialize = function(){        
         this.screen_initialize();
@@ -54,18 +54,18 @@
     };
     
     LoadingScreen.prototype.show = function(){
-        Screen.prototype.show.call(this);
+        HScreen.prototype.show.call(this);
         
     };
     
     LoadingScreen.prototype.hide = function(){
-        Screen.prototype.hide.call(this);
+        HScreen.prototype.hide.call(this);
         this.rotate_light1.stop()
         this.rotate_light2.stop();
     };
     
     LoadingScreen.prototype.update = function(){
-        Screen.prototype.update.call(this);
+        HScreen.prototype.update.call(this);
          
          var to_load = ContentManager.count_resources;
          var loaded = ContentManager.loaded_resources;
@@ -83,18 +83,18 @@
     };
     
     LoadingScreen.prototype.on_added_to_parent = function(parent){
-        Screen.prototype.on_added_to_parent.call(this,parent);
+        HScreen.prototype.on_added_to_parent.call(this,parent);
         
     };
     
     LoadingScreen.prototype.on_remove_from_parent = function(parent){
-        Screen.prototype.on_remove_from_parent.call(this,parent);
+        HScreen.prototype.on_remove_from_parent.call(this,parent);
         
     };
     
     LoadingScreen.prototype.draw = function(context){
        
-        Screen.prototype.draw.call(this,context);
+        HScreen.prototype.draw.call(this,context);
         
         context.fillStyle = "#FFFFFF";
         context.fillRect(this.bounds.pos.x,this.bounds.pos.y,this.width,this.height);

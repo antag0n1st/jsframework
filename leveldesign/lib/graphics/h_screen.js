@@ -1,27 +1,27 @@
 (function(window, undefined) {
 
-    function Screen() {
+    function HScreen() {
         this.initialize();
     }
     
-    Screen.prototype = new Drawable();
-    Screen.prototype.drawable_initialize = Screen.prototype.initialize;
+    HScreen.prototype = new Drawable();
+    HScreen.prototype.drawable_initialize = HScreen.prototype.initialize;
 
-    Screen.prototype.initialize = function() {
+    HScreen.prototype.initialize = function() {
         this.drawable_initialize();
         this.set_size(Config.screen_width,Config.screen_height );
     };
 
 
-    Screen.prototype.show = function() {        
+    HScreen.prototype.show = function() {        
         game.stage.add(this);
     };
 
-    Screen.prototype.hide = function() {
+    HScreen.prototype.hide = function() {
         this.remove_from_parent();
     };
         
-    Screen.prototype.draw = function(context){
+    HScreen.prototype.draw = function(context){
         
         this._alpha = context.globalAlpha;
         
@@ -32,17 +32,17 @@
         
     };
     
-    Screen.prototype.on_resize = function(){};
+    HScreen.prototype.on_resize = function(){};
     
-    Screen.prototype.on_draw_finished = function(context) {    
+    HScreen.prototype.on_draw_finished = function(context) {    
         context.globalAlpha = this._alpha;    
     };
 
-    Screen.prototype.clear = function(context){};
+    HScreen.prototype.clear = function(context){};
 
-    Screen.prototype.update = function(dt) {};    
+    HScreen.prototype.update = function(dt) {};    
     
-    Screen.prototype.update_children = function(children) {
+    HScreen.prototype.update_children = function(children) {
 
 //        if (parent.is_children_sortable) {
 //            this.sort_objects(children);
@@ -59,6 +59,6 @@
 
     };
 
-    window.Screen = Screen;
+    window.HScreen = HScreen;
 
 }(window));
