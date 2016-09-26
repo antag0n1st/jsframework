@@ -77,6 +77,7 @@
     };
     
     GuiScreen.prototype.on_button = function (event,sender) {
+      
         if(sender.tag === 0){
             game.navigator.go_back(HNavigator.ANIMATION_TYPE_FADEOUT,200);
         } else if(sender.tag === 1){

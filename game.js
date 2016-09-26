@@ -91,21 +91,19 @@
         this.debug_label = new Label();
         this.debug_label.text = '';
         this.debug_label.font_size = 25;
-        this.debug_label.font_color = "#333333";
+        this.debug_label.font_color = "#555555";
         this.debug_label.z_index = 10000;
         this.stage.add(this.debug_label);
 
         this.debug_label2 = new Label();
         this.debug_label2.text = '';
         this.debug_label2.font_size = 25;
-        this.debug_label2.font_color = "#333333";
+        this.debug_label2.font_color = "#555555";
         this.debug_label2.z_index = 10000;
         this.stage.add(this.debug_label2);
 
-        this.debug_label.set_position(20, Config.screen_height - 80);
+        this.debug_label.set_position(20, Config.screen_height - 70);
         this.debug_label2.set_position(20, Config.screen_height - 40);
-
-
 
     };
 

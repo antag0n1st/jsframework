@@ -37,7 +37,7 @@
 
         this.loading_bar.set_position(mid_x, height * 0.6);
 
-        this.background.set_position(mid_x, height / 2);
+        this.background.set_position(-10,-10);
         this.background.width = Config.screen_width * 1.2;
         this.background.height = Config.screen_height * 1.2;
         
