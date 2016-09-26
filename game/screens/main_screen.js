@@ -46,6 +46,15 @@
         this.keyboardbutton.tag = 2;
         this.keyboardbutton.on_mouse_up = MainScreen.prototype.on_button.bind(this);
         this.add_child(this.keyboardbutton);
+        
+        this.filters_button = new Button(Style.SAMPLE_BUTTON);
+        this.filters_button.label.txt = lang("Filters");
+        this.filters_button.set_anchor(0.5, 0.5);
+        this.filters_button.set_position(Config.screen_width / 2, 600);
+        this.filters_button.tag = 3;
+        this.filters_button.on_mouse_up = MainScreen.prototype.on_button.bind(this);
+        this.add_child(this.filters_button);
+
 
 
     };
@@ -60,6 +69,9 @@
         } else if (sender.tag === 2) {
             var screen = new KeyboardScreen();
             game.navigator.add(screen, HNavigator.ANIMATION_TYPE_FADEOUT, 200);
+        } else if (sender.tag === 3) {
+            var screen = new FiltersScreen();
+            game.navigator.add(screen, HNavigator.ANIMATION_TYPE_FADEOUT, 200);
         }
     };
 
@@ -73,6 +85,7 @@
         game.input.add(this.ori_button);
         game.input.add(this.gui_button);
         game.input.add(this.keyboardbutton);
+        game.input.add(this.filters_button);
     };
 
     MainScreen.prototype.hide = function () {
@@ -80,7 +93,7 @@
         game.input.remove(this.ori_button);
         game.input.remove(this.gui_button);
         game.input.remove(this.keyboardbutton);
-
+        game.input.remove(this.filters_button);
     };
 
     MainScreen.prototype.on_note = function (event_name, data, sender) {

@@ -17,6 +17,15 @@
         s.set_anchor(0.5,0.5);
         s.set_position(Config.screen_width/2,Config.screen_height/2);
         this.add_child(s);
+        
+        this.button = new Button(Style.SAMPLE_BUTTON);
+        this.button.label.txt = lang("Go Back");
+        this.button.tag = 0;
+        this.button.on_mouse_up = function () {
+            game.navigator.go_back();
+        };
+        this.button.set_position(30, 50);
+        this.add_child(this.button);
 
 
         this.shock = new PIXI.filters.ShockwaveFilter();
@@ -48,12 +57,12 @@
 
     FiltersScreen.prototype.show = function () {
         HScreen.prototype.show.call(this);
-
+        game.input.add(this.button);
     };
 
     FiltersScreen.prototype.hide = function () {
         HScreen.prototype.hide.call(this);
-
+        game.input.remove(this.button);
     };
 
     FiltersScreen.prototype.on_note = function (event_name, data, sender) {
