@@ -1,9 +1,6 @@
 Game.prototype.load_assets = function () {
 
 
-
-
-
 ContentManager.add_image('arrow','arrow.png');
 
 ContentManager.add_image('attractor','attractor.png');
