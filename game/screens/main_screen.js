@@ -39,6 +39,13 @@
         this.gui_button.on_mouse_up = MainScreen.prototype.on_button.bind(this);
         this.add_child(this.gui_button);
 
+        this.keyboardbutton = new Button(Style.SAMPLE_BUTTON);
+        this.keyboardbutton.label.txt = lang("Keyboard");
+        this.keyboardbutton.set_anchor(0.5, 0.5);
+        this.keyboardbutton.set_position(Config.screen_width / 2, 500);
+        this.keyboardbutton.tag = 2;
+        this.keyboardbutton.on_mouse_up = MainScreen.prototype.on_button.bind(this);
+        this.add_child(this.keyboardbutton);
 
 
     };
@@ -49,6 +56,9 @@
             game.navigator.add(screen, HNavigator.ANIMATION_TYPE_FADEOUT, 200);
         } else if (sender.tag === 1) {
             var screen = new GuiScreen();
+            game.navigator.add(screen, HNavigator.ANIMATION_TYPE_FADEOUT, 200);
+        } else if (sender.tag === 2) {
+            var screen = new KeyboardScreen();
             game.navigator.add(screen, HNavigator.ANIMATION_TYPE_FADEOUT, 200);
         }
     };
@@ -62,12 +72,14 @@
         HScreen.prototype.show.call(this);
         game.input.add(this.ori_button);
         game.input.add(this.gui_button);
+        game.input.add(this.keyboardbutton);
     };
 
     MainScreen.prototype.hide = function () {
         HScreen.prototype.hide.call(this);
         game.input.remove(this.ori_button);
         game.input.remove(this.gui_button);
+        game.input.remove(this.keyboardbutton);
 
     };
 
