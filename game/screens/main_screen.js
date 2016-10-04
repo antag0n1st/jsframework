@@ -54,6 +54,15 @@
         this.filters_button.tag = 3;
         this.filters_button.on_mouse_up = MainScreen.prototype.on_button.bind(this);
         this.add_child(this.filters_button);
+        
+        
+        this.fake3d_button = new Button(Style.SAMPLE_BUTTON);
+        this.fake3d_button.label.txt = lang("Fake 3D");
+        this.fake3d_button.set_anchor(0.5, 0.5);
+        this.fake3d_button.set_position(Config.screen_width / 2, 700);
+        this.fake3d_button.tag = 4;
+        this.fake3d_button.on_mouse_up = MainScreen.prototype.on_button.bind(this);
+        this.add_child(this.fake3d_button);
 
 
 
@@ -72,6 +81,9 @@
         } else if (sender.tag === 3) {
             var screen = new FiltersScreen();
             game.navigator.add(screen, HNavigator.ANIMATION_TYPE_FADEOUT, 200);
+        } else if (sender.tag === 4) {
+            var screen = new Fake3dScreen();
+            game.navigator.add(screen, HNavigator.ANIMATION_TYPE_FADEOUT, 200);
         }
     };
 
@@ -86,6 +98,7 @@
         game.input.add(this.gui_button);
         game.input.add(this.keyboardbutton);
         game.input.add(this.filters_button);
+        game.input.add(this.fake3d_button);
     };
 
     MainScreen.prototype.hide = function () {
@@ -94,6 +107,7 @@
         game.input.remove(this.gui_button);
         game.input.remove(this.keyboardbutton);
         game.input.remove(this.filters_button);
+        game.input.remove(this.fake3d_button);
     };
 
     MainScreen.prototype.on_note = function (event_name, data, sender) {
@@ -101,26 +115,6 @@
     };
 
     MainScreen.prototype.on_resize = function () {
-
-    };
-
-    MainScreen.prototype.on_mouse_down = function (event, element) {
-
-    };
-
-    MainScreen.prototype.on_mouse_move = function (event, element) {
-
-    };
-
-    MainScreen.prototype.on_mouse_up = function (event, element) {
-
-    };
-
-    MainScreen.prototype.on_mouse_cancel = function (element) {
-
-    };
-
-    MainScreen.prototype.on_right_mouse_down = function (event) {
 
     };
 

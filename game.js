@@ -55,8 +55,6 @@
 
             ContentManager.download_resources(this.stage, function () {
 
-                timeout(function () {
-
                     Style.initialize();
                     Localization.instance().load();
 
@@ -72,8 +70,6 @@
                             game.show_rotate_device();
                         }
                     });
-
-                }, 300);
             });
 
             // Handle visibility
