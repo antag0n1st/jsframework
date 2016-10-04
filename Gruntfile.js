@@ -21,6 +21,7 @@ module.exports = function (grunt) {
                     "lib/external/sat.js",
                     "lib/external/kibo.js",
                     "lib/external/visibility.core.js",
+                    "lib/external/store.js",
                     
                     "lib/utility/*.js",
                     
