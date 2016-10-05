@@ -127,6 +127,10 @@
     Game.prototype.resize = function () {
 
         this.device.calculate_sizes();
+        
+        timeout(function(){
+            game.input.recalculate_offset();
+        },100);        
 
         this.stage.renderer.view.style.width = Math.ceil(Config.canvas_width) + "px";
         this.stage.renderer.view.style.height = Math.ceil(Config.canvas_height) + "px";
