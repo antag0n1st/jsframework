@@ -11,11 +11,12 @@ module.exports = function (grunt) {
             },
             build: {
                 src: [
-                    "config.js",
-                    "boot.js",
+                    "system/config.js",
+                    "system/boot.js",
                     
                     "lib/external/pixi.js",
                     "lib/external/pixi-spine.js",
+                    "lib/external/pixi-filters.js",
                     "lib/external/howler.js",
                     "lib/external/font.js",
                     "lib/external/sat.js",
@@ -46,12 +47,12 @@ module.exports = function (grunt) {
                     "lib/ui/scrollview_content.js",
                     "lib/ui/*.js",
 					
-                    "style.js",
-                    "loading_screen.js",
-                    "notes.js",
-                    "rotate_layer.js",
+                    "system/style.js",
+                    "system/loading_screen.js",
+                    "system/notes.js",
+                    "system/rotate_layer.js",
                     
-                    "game.js",
+                    "system/game.js",
                     "assets/assets.js",
                     
                     "game/**/*.js"
