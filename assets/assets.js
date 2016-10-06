@@ -1,6 +1,10 @@
 Game.prototype.load_assets = function () {
 
 
+
+
+
+
 ContentManager.add_image('arrow','arrow.png');
 
 ContentManager.add_image('attractor','attractor.png');
@@ -30,9 +34,9 @@ ContentManager.add_image('wall','wall.png');
 ContentManager.add_file('en','assets/localization/en.txt');
 
 
-ContentManager.add_sound('jump','assets/sounds/effects/jump');
+ContentManager.add_sound('jump',['assets/sounds/effects/jump.webm','assets/sounds/effects/jump.mp3']);
 
-ContentManager.add_audio('background','assets/sounds/music/background');
+ContentManager.add_audio('background',['assets/sounds/music/background.webm','assets/sounds/music/background.mp3']);
 
  
 };

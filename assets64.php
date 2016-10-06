@@ -50,14 +50,18 @@ function listFolderFiles($dir) {
                         $content .= "ContentManager.add_spine('" . $basic . "');\n";
                     }
                 } else if (stringContains($dir, 'sounds' . DS . 'effects')) {
-                    if (endsWith($ff, '.webm')) {
+                    if (endsWith($ff, '.mp3')) {
                         $basic = beforeComma($ff);
-                        $content .= "ContentManager.add_sound('" . $basic . "',['" . create_url($dir) . $basic . ".webm','" . create_url($dir) . $basic . ".mp3']);\n";
+                        $data = file_get_contents($dir.DS.$ff);
+                        $base64 = "data:audio/mp3;base64,".base64_encode($data);
+                        $content .= "ContentManager.add_sound('" . $basic . "','" . $base64 . "');\n";
                     }
                 } else if (stringContains($dir, 'sounds' . DS . 'music')) {
-                    if (endsWith($ff, '.webm')) {
+                    if (endsWith($ff, '.mp3')) {
                         $basic = beforeComma($ff);
-                        $content .= "ContentManager.add_audio('" . $basic . "',['" . create_url($dir) . $basic . ".webm','" . create_url($dir) . $basic . ".mp3']);\n";
+                        $data = file_get_contents($dir.DS.$ff);
+                        $base64 = "data:audio/mp3;base64,".base64_encode($data);
+                        $content .= "ContentManager.add_audio('" . $basic . "','" . $base64 . "');\n";
                     }
                 } else if (endsWith($dir, DS . 'fonts')) {
                     if (endsWith($ff, '.ttf')) {
@@ -102,8 +106,10 @@ function listFolderFiles($dir) {
 
 listFolderFiles($main_dir);
 
+$file_name = "assets64.js";
+
 $content = "Game.prototype.load_assets = function () {\n\n" . $content . " \n};";
 
-file_put_contents('assets' . DS . 'assets.js', $content);
+file_put_contents('assets' . DS . $file_name, $content);
 
-echo $main_dir . "/assets/assets.js" . " GENEREATED";
+echo $main_dir . "/assets/".$file_name . " GENEREATED";
