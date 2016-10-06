@@ -1,7 +1,7 @@
 <?php
 
 define('DS', DIRECTORY_SEPARATOR);
-$main_dir = getcwd() . DS . 'assets';
+$main_dir = getcwd() . DS . '..' . DS . 'assets';
 
 $content = "";
 
@@ -104,6 +104,6 @@ listFolderFiles($main_dir);
 
 $content = "Game.prototype.load_assets = function () {\n\n" . $content . " \n};";
 
-file_put_contents('assets' . DS . 'assets.js', $content);
+file_put_contents('..' . DS . 'assets' . DS . 'assets.js', $content);
 
 echo $main_dir . "/assets/assets.js" . " GENEREATED";
