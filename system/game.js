@@ -8,6 +8,11 @@
 
         this.device = new Device(); // read the device
 
+        if (Config.window_mode_mobile !== null && this.device.is_mobile) {
+            Config.window_mode = Config.window_mode_mobile;
+            this.device.calculate_sizes();
+        }
+
         this.stage = new Stage();
 
         this.input = new Input(this.device);
@@ -55,21 +60,21 @@
 
             ContentManager.download_resources(this.stage, function () {
 
-                    Style.initialize();
-                    Localization.instance().load();
+                Style.initialize();
+                Localization.instance().load();
 
-                    ////////////////////////////////////////////////////////
-                    var screen = new MainScreen(); // initial screen
-                    ////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////
+                var screen = new MainScreen(); // initial screen
+                ////////////////////////////////////////////////////////
 
-                    game.navigator.add(screen, null, 200, function () {
-                        game.navigator.screens.shift();
-                        if (game.is_rotation_screen_shown) {
-                            game.rotate_layer.remove_from_parent();
-                            game.is_rotation_screen_shown = false;
-                            game.show_rotate_device();
-                        }
-                    });
+                game.navigator.add(screen, null, 200, function () {
+                    game.navigator.screens.shift();
+                    if (game.is_rotation_screen_shown) {
+                        game.rotate_layer.remove_from_parent();
+                        game.is_rotation_screen_shown = false;
+                        game.show_rotate_device();
+                    }
+                });
             });
 
             // Handle visibility
@@ -127,10 +132,10 @@
     Game.prototype.resize = function () {
 
         this.device.calculate_sizes();
-        
-        timeout(function(){
+
+        timeout(function () {
             game.input.recalculate_offset();
-        },100);        
+        }, 100);
 
         this.stage.renderer.view.style.width = Math.ceil(Config.canvas_width) + "px";
         this.stage.renderer.view.style.height = Math.ceil(Config.canvas_height) + "px";
@@ -179,30 +184,30 @@
     Game.prototype.show_rotate_device = function () {
 
         if (!this.is_rotation_screen_shown) {
-            
+
             this.is_rotation_screen_shown = true;
             this.rotate_layer.z_index = 9999999999;
             this.navigator.current_screen.add_child(this.rotate_layer);
-            
+
             if (Config.is_sound_on) {
                 Howler.mute(true);
             }
         }
-        
+
     };
 
     Game.prototype.hide_rotate_device = function () {
-        
+
         if (this.is_rotation_screen_shown) {
-            
+
             this.is_rotation_screen_shown = false;
             this.rotate_layer.remove_from_parent();
-            
+
             if (Config.is_sound_on) {
                 Howler.mute(false);
             }
         }
-        
+
     };
 
     Game.prototype.tick = function () {

@@ -12,6 +12,7 @@ Config.MODE_CENTERED = 3; // it will preserve the aspect ratio an fit into the s
 Config.MODE_NONE = 4; // do not do anything about it
 
 Config.window_mode = Config.MODE_CENTERED; // set the scaling method
+Config.window_mode_mobile = null; // if you need specila mode for mobile devices
 
 Config.is_sound_on = true; // switch the sound on/off
 Config.debug_info = true;
