@@ -64,7 +64,7 @@
                 Localization.instance().load();
 
                 ////////////////////////////////////////////////////////
-                var screen = new MainScreen(); // initial screen
+                var screen = new FontScreen(); // initial screen
                 ////////////////////////////////////////////////////////
 
                 game.navigator.add(screen, null, 200, function () {

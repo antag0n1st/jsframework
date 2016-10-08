@@ -4,6 +4,7 @@ Game.prototype.load_assets = function () {
 
 
 
+ContentManager.add_bitmap_font('half_bold_pixel','assets/fonts/half_bold_pixel.fnt');
 
 ContentManager.add_image('arrow','arrow.png');
 

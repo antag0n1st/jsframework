@@ -62,7 +62,10 @@ function listFolderFiles($dir) {
                 } else if (endsWith($dir, DS . 'fonts')) {
                     if (endsWith($ff, '.ttf')) {
                         $basic = beforeComma($ff);
-                        $content .= "ContentManager.add_font('" . $basic . "','" . create_url($dir) . $ff . "');\n";
+                        $content .= "ContentManager.add_font('" . $basic . "','" . create_url($dir) . $ff . "',{ xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.DOCUMENT});\n";
+                    } else if (endsWith($ff, '.fnt')) {
+                        $basic = beforeComma($ff);
+                        $content .= "ContentManager.add_bitmap_font('" . $basic . "','" . create_url($dir) . $ff . "');\n";
                     }
                 } else if (stringContains($dir, 'assets' . DS . 'images' . DS . "atlases")) {
                     if (endsWith($ff, '.png')) {
