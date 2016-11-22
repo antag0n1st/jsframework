@@ -2,6 +2,7 @@
 var Config = function () {
 };
 
+
 Config.game_width = 1920; // set the size of the canvas here 
 Config.game_height = 1080;
 
@@ -29,14 +30,14 @@ Config.ROTATION_MODE_ALLOW = 0;
 Config.ROTATION_MODE_HORIZONTAL = 1;
 Config.ROTATION_MODE_VERTICAL = 2;
 
-Config.rotation_mode = Config.ROTATION_MODE_ALLOW;
+Config.rotation_mode = Config.ROTATION_MODE_HORIZONTAL;
 
 /**
  *  Number of miliseconds to pause the drawing
  * @type Number
  */
 Config.freeze = 0;
-        
+
 /**
  * 
  * @type Number - the actual size of the screen

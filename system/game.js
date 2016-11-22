@@ -13,7 +13,7 @@
             this.device.calculate_sizes();
         }
 
-        this.stage = new Stage();
+        this.stage = new Stage(this.device);
 
         this.input = new Input(this.device);
 
@@ -31,10 +31,12 @@
         Howler.volume(0.4);
         Howler.autoSuspend = false;
 
+        this.session_id = UID.gen();
+
         ////////////////////////////////////////////////////////////////////////////
         ////////////////////  LOADING INITIAL ASSETS ////////////////////////////////
 
-        // ContentManager.add_image('logo');        
+        //ContentManager.add_image('logo', 'initial/logo.png');
         ContentManager.add_image('loading_bg', 'initial/loading_bg.png');
         ContentManager.add_image('loading_fr_pice', 'initial/loading_fr_pice.png');
         ContentManager.add_image('white', 'initial/white.png');
@@ -160,6 +162,18 @@
 
 
     Game.prototype.check_rotation = function () {
+        
+        if (Config.window_mode !== Config.window_mode_mobile) {
+            if (this.device.is_mobile) {
+                if (Config.window_mode_mobile === Config.MODE_CENTERED) {
+                    return;
+                }
+            } else{
+                if (Config.window_mode === Config.MODE_CENTERED) {
+                    return;
+                }
+            }
+        }
 
         if (Config.rotation_mode === Config.ROTATION_MODE_HORIZONTAL) {
 

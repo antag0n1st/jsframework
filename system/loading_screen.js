@@ -16,7 +16,8 @@
         this.add_child(this.background);
 
         this.logo = new Sprite(null);//Put logo image here
-        this.logo.set_position(Config.screen_width / 2 - 150, 200);
+        this.logo.set_anchor(0.5,0.5);
+        
         this.add_child(this.logo);
 
         this.is_animating = true;
@@ -35,7 +36,8 @@
         var mid_x = Config.screen_width / 2;
         var height = Config.screen_height;
 
-        this.loading_bar.set_position(mid_x, height * 0.6);
+        this.logo.set_position(Config.screen_width / 2 ,  height * 0.45);
+        this.loading_bar.set_position(mid_x, height * 0.75);
 
         this.background.set_position(-10,-10);
         this.background.width = Config.screen_width * 1.2;

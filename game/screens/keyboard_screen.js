@@ -28,29 +28,34 @@
         this.keyboard = new Keyboard(Keyboard.HORIZONTAL);
         this.add_child(this.keyboard); // ADD this out of the content
 
-        this.text_label = new InputLabel(Style.SAMPLE_LABEL, this.keyboard);
-        this.text_label.set_position(Config.screen_width / 2, 300);
-        this.text_label.set_placeholder('Input label , click it !');
-        this.text_label.on_focus = KeyboardScreen.prototype.on_focus.bind(this);
-        this.text_label.on_blur = KeyboardScreen.prototype.on_blur.bind(this);
-        this.content.add_child(this.text_label);
+        this.input_label = new InputLabel(Style.SAMPLE_LABEL, this.keyboard);
+        this.input_label.set_position(Config.screen_width / 2, 500);
+        this.input_label.limit = 26;
+        this.input_label.tag = 1;
+        this.input_label.set_placeholder('Place Holder Text');
+        this.input_label.on_focus = KeyboardScreen.prototype.on_focus.bind(this);
+        this.input_label.on_blur = KeyboardScreen.prototype.on_blur.bind(this);
+        this.content.add_child(this.input_label);
+
 
     };
 
     KeyboardScreen.prototype.on_focus = function (label) {
+
         if (game.device.is_touch) {
-            var to = new V(0, -100);
+            var to = new V(0, -350);
             var t = new TweenMoveTo(this.content, to, null, 200);
             t.run();
         }
     };
 
     KeyboardScreen.prototype.on_blur = function (label) {
-       if (game.device.is_touch) {
-            var to = new V(0,0);
+        if (game.device.is_touch) {
+            var to = new V(0, 0);
             var t = new TweenMoveTo(this.content, to, null, 200);
             t.run();
-        };
+        }
+        ;
     };
 
     KeyboardScreen.prototype.update = function (dt) {
@@ -63,7 +68,7 @@
 
         game.input.add(this);
         game.input.add(this.button);
-        game.input.add(this.text_label);
+        game.input.add(this.input_label);
     };
 
     KeyboardScreen.prototype.hide = function () {
@@ -71,9 +76,9 @@
 
         game.input.remove(this);
         game.input.remove(this.button);
-        game.input.remove(this.text_label);
+        game.input.remove(this.input_label);
 
-        this.text_label.blur();
+        this.input_label.blur();
         this.keyboard.hide();
     };
 
@@ -86,11 +91,11 @@
     };
 
     KeyboardScreen.prototype.on_mouse_up = function (event, element) {
-        this.text_label.blur();
+        this.input_label.blur();
     };
 
     KeyboardScreen.prototype.on_mouse_cancel = function (element) {
-        this.text_label.blur();
+        this.input_label.blur();
     };
 
 
